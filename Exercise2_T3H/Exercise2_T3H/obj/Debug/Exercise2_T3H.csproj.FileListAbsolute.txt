@@ -1,0 +1,11 @@
+C:\xampp\htdocs\Exercise2_T3H\Exercise2_T3H\bin\Debug\Exercise2_T3H.exe.config
+C:\xampp\htdocs\Exercise2_T3H\Exercise2_T3H\bin\Debug\Exercise2_T3H.exe
+C:\xampp\htdocs\Exercise2_T3H\Exercise2_T3H\bin\Debug\Exercise2_T3H.pdb
+C:\xampp\htdocs\Exercise2_T3H\Exercise2_T3H\obj\Debug\Exercise2_T3H.csprojAssemblyReference.cache
+C:\xampp\htdocs\Exercise2_T3H\Exercise2_T3H\obj\Debug\Exercise2_T3H.frmLogin.resources
+C:\xampp\htdocs\Exercise2_T3H\Exercise2_T3H\obj\Debug\Exercise2_T3H.Properties.Resources.resources
+C:\xampp\htdocs\Exercise2_T3H\Exercise2_T3H\obj\Debug\Exercise2_T3H.csproj.GenerateResource.cache
+C:\xampp\htdocs\Exercise2_T3H\Exercise2_T3H\obj\Debug\Exercise2_T3H.csproj.CoreCompileInputs.cache
+C:\xampp\htdocs\Exercise2_T3H\Exercise2_T3H\obj\Debug\Exercise2_T3H.exe
+C:\xampp\htdocs\Exercise2_T3H\Exercise2_T3H\obj\Debug\Exercise2_T3H.pdb
+C:\xampp\htdocs\Exercise2_T3H\Exercise2_T3H\obj\Debug\Exercise2_T3H.frmTableManager.resources

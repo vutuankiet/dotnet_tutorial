@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Exercise1";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+<h2>Exercise1: Nhận biết tam giác.</h2>
+
+<div class="container">
+    <div class="row">
+        <div>
+            <label class="text-dark col-12">Nhập vào cạnh a:</label><br />
+            <input id="a" name="a" class="text-dark bg-light col-12" type="number" min="0" />
+        </div>
+        <div>
+            <label class="text-dark col-12">Nhập vào cạnh b:</label><br />
+            <input id="b" name="b" class="text-dark bg-light col-12" type="number" min="0" />
+        </div>
+        <div>
+            <label class="text-dark col-12">Nhập vào cạnh c:</label><br />
+            <input id="c" name="c" class="text-dark bg-light col-12" type="number" min="0" />
+        </div>
+        <hr />
+        <div class="col-12">
+            <button id="submit" type="button" class="btn btn-success">Kiểm Tra</button>
+        </div>
+        <hr />
+        <div class="col-12">
+            <p class="print text-success"></p>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+        $(function () {
+            $("#submit").on("click", function () {
+                var a = parseInt($("#a").val());
+                var b = parseInt($("#b").val());
+                var c = parseInt($("#c").val());
+                if (a < b + c && b < a + c && c < a + b) {
+                    $(".print").html("Đây là tam giác nhọn");
+                    if (a * a == b * b + c * c || b * b == a * a + c * c || c * c == a * a + b * b) {
+                        $(".print").html("Đây là tam giác vuông!");
+                    }
+
+                    if (a == b || a == c || b == c) {
+                        $(".print").html("Đây là tam giác cân!");
+                    }
+
+                    if (a == b && b == c) {
+                        $(".print").html("Đây là tam giác đều!");
+                    }
+
+                    if (a * a > b * b + c * c || b * b > a * a + c * c || c * c > a * a + b * b) {
+                        $(".print").html("Đây là tam giác tù!");
+                    }
+                }
+                else
+                    $(".print").html("Ba cạnh a, b, c không phải là 3 cạnh của 1 tam giác!");
+            });
+        })
+    </script>
+}

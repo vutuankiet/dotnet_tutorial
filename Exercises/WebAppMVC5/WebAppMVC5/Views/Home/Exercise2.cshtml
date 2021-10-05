@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Exercise2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+
+<h2>Exercise2: Giải phương trình bậc 2.</h2>
+
+<div class="container">
+    <div class="row">
+        <div>
+            <label class="text-dark col-12">Nhập số a:</label><br />
+            <input id="a" name="a" class="text-dark bg-light col-12" type="number"/>
+        </div>
+        <div>
+            <label class="text-dark col-12">Nhập số b:</label><br />
+            <input id="b" name="b" class="text-dark bg-light col-12" type="number"/>
+        </div>
+        <div>
+            <label class="text-dark col-12">Nhập số c:</label><br />
+            <input id="c" name="c" class="text-dark bg-light col-12" type="number"/>
+        </div>
+        <hr />
+        <div class="col-12">
+            <button id="submit" type="button" class="btn btn-success">Kiểm Tra</button>
+        </div>
+        <hr />
+        <div class="col-12">
+            <p class="print"></p>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+        $(function () {
+            $("#submit").on("click", function () {
+                var a = parseInt($("#a").val());
+                var b = parseInt($("#b").val());
+                var c = parseInt($("#c").val());
+
+                if (a == 0 && b == 0 && c != 0) {
+                    $(".print").html("Phương trình vô nghiệm!").css('color', 'red');
+                }
+
+                if (a == 0 && b != 0 && c != 0) {
+                    $(".print").html("Phương trình có 1 nghiệm duy nhất!").css('color', 'black');
+                }
+
+                if (a == 0 && b == 0 && c == 0) {
+                    $(".print").html("Phương trình vô số nghiệm!").css('color', 'black');
+                }
+
+                else{
+                    var delta = b * b - 4 * a * c;
+                    if (delta < 0) {
+                        $(".print").html("Phương trình vô nghiệm!").css('color', 'red');
+                    }
+
+                    if (delta == 0) {
+                        $(".print").html("Phương trình có 1 nghiệm kép!").css('color', 'yellow');
+                    }
+
+                    if (delta > 0) {
+                        $(".print").html("Phương trình có 2 nghiệm phân biệt!").css('color', 'green');
+                    }
+                }
+            });
+        })
+    </script>
+}

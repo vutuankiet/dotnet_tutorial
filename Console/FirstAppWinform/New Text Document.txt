@@ -1,0 +1,8 @@
+xay dung  cac interface cho DAO EF
+interface la phan de tao ra phan kuon cua cac chuc nang
+xay dung cac chuc nang chung
+
+//khi khai bao chuc nang chi can khai bao den interface tu dong ren code implement nhanh tien loi
+    //Tạo Class Product kế thừa BaseDAO, IProductDAO
+    //interface chi khai bao phuong thuc chuc nang mac dinh
+//them asyn vao cac chuc nang co tack demo: asyn task

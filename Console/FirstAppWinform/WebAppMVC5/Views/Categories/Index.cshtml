@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WebAppMVC5.Models.EF.Category>
+
+@{
+    ViewBag.Title = "Trang chủ";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên
+        </th>
+        <th>
+            Tên Tiếng Việt
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameVN)
+        </td>
+        <td>
+            @Html.ActionLink("sửa", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
