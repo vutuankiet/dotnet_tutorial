@@ -14,7 +14,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion position-sticky" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -147,7 +147,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow sticky-top">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -357,16 +357,17 @@
                 </nav>
                 <div class="container-fluid">
                     @RenderBody()
+                    <footer>
+                        <div class="text-center bg-light text-secondary p-3 m-0">
+                            <p class="m-0 text-center"> -- Power by vutuankiet2411@gmail.com -- </p>
+                        </div>
+                    </footer>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer>
-        <div class="text-center bg-light text-secondary p-3 m-0">
-            <p class="m-0 text-center"> -- Power by vutuankiet2411@gmail.com -- </p>
-        </div>
-    </footer>
+    
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
