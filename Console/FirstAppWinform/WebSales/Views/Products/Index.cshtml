@@ -1,0 +1,93 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<WebSales.Models.EF.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="card shadow p-3">
+    <div class="card-body">
+        <h2>Loai mat hang</h2>
+        @Html.Partial("IndexPartialView\\CreateAndFind")
+    </div>
+    <div class="overflow-auto">
+        <table class="table table-sm table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Ten San Pham
+                    </th>
+                    <th>
+                        Ten Loai
+                    </th>
+                    <th>
+                        Don gia
+                    </th>
+                    <th>
+                        Ngay san xuat
+                    </th>
+
+                    <th>
+                        Hinh anh
+                    </th>
+                    <th>
+                        Chu thich
+                    </th>
+                    <th>
+                        Tinh trang
+                    </th>
+
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnitPrice)
+                    </td>
+                    <td>
+                        @*@item.ProductDate.Value.ToString("dd/mm/yyyy")*@
+                        @Html.DisplayFor(modelItem => item.ProductDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Image)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.Available)*@
+                        @{ 
+                            string classCss = (bool)item.Available ? "btn-success" : "btn-danger";
+                            string content = (bool)item.Available ? "Con ban" : "Ngung ban";
+
+                        }
+                        <button class="btn btn-block btn-sm @classCss border-dark">@content</button>
+                    </td>
+
+                    <td class="text-nowrap" width="1px">
+                        @Html.Partial("IndexPartialView\\TableFeature", item.ID)
+                    </td>
+                </tr>
+                }
+
+        </table>
+    </div>
+    <div>
+        @Html.Partial("IndexPartialView\\PagedList", Model)
+    </div>
+</div>
+
+@section css{
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+}

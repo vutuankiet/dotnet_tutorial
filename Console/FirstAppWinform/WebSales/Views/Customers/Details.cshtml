@@ -1,58 +1,82 @@
 ﻿@model WebSales.Models.EF.Customer
+@using PagedList
+@using PagedList.Mvc
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Create";
 }
 
-<h2>Details</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-<div>
-    <h4>Customer</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
+    <div class="card shadow container col-12 col-md-6">
+        <div class="card-body">
+            <h2>Chi tiet</h2>
+            <h4>Customer</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Fullname)
-        </dt>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Fullname, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Fullname, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.Fullname, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Fullname)
-        </dd>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Photo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Activated, htmlAttributes: new { @class = "control-label col-md-2", @readonly = "readonly" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Activated)
+                        @Html.ValidationMessageFor(model => model.Activated, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Photo)
-        </dt>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10 p-0">
+                    @*<input type="submit" value="Thay doi" class="btn btn-outline-warning" />*@
+                    @Html.ActionLink("Chinh sua", "Edit", new { id = Model.ID}, htmlAttributes: new { @class = "btn btn-outline-warning" })
+                    @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-outline-dark" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
-        <dd>
-            @Html.DisplayFor(model => model.Photo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Activated)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Activated)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

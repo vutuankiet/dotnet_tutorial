@@ -31,7 +31,7 @@ namespace WebSales.Models.DAO
                 return false;
             }
 
-            return false;
+            return true;
         }
 
         //Định nghĩa cho chức năng Delete của Product
@@ -48,6 +48,7 @@ namespace WebSales.Models.DAO
                 //await la 1 len chờ Asyn thuc thi
                 
                 await _context.SaveChangesAsync();
+                return true;
             }
             catch (Exception ex)
             {
@@ -55,7 +56,7 @@ namespace WebSales.Models.DAO
                 //retunr se tra ve task ko phai du lieu
             }
 
-            return false;
+            
         }
 
         //Định nghĩa cho chức năng GetAll của Product
@@ -118,6 +119,7 @@ namespace WebSales.Models.DAO
                     cEntity.ProductDate = entity.ProductDate;
                     cEntity.CategoryID = entity.CategoryID;
                     cEntity.Description = entity.Description;
+                    cEntity.Available = entity.Available;
 
                     await _context.SaveChangesAsync();
                 }
@@ -127,7 +129,7 @@ namespace WebSales.Models.DAO
                 return false;
             }
 
-            return false;
+            return true;
         }
     }
 }

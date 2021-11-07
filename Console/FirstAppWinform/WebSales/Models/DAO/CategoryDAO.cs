@@ -26,9 +26,23 @@ namespace WebSales.Models.DAO
             return true;
         }
 
-        public Task<bool> Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            throw new NotImplementedException();
+            var ef = await GetSingleByID(id);
+
+            try
+            {
+                _context.Categories.Remove(ef);
+
+                await _context.SaveChangesAsync();
+
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public async Task<List<Category>> GetAll()

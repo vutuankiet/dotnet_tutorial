@@ -25,7 +25,7 @@ namespace WebSales.Models.EF
         public Nullable<double> UnitPrice { get; set; }
         public string Image { get; set; }
         public Nullable<System.DateTime> ProductDate { get; set; }
-        public Nullable<int> Available { get; set; }
+        public Nullable<bool> Available { get; set; }
         public Nullable<int> CategoryID { get; set; }
         public string Description { get; set; }
     

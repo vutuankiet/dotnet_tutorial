@@ -1,39 +1,68 @@
-﻿@model IEnumerable<WebSales.Models.EF.Category>
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<WebSales.Models.EF.Category>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NameVN)
-        </th>
-        <th></th>
-    </tr>
+<div class="card shadow p-3">
+    <div class="card-body">
+        <h2>Loai mat hang</h2>
+        <div class="d-flex">
+            <p>
+                @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class = "btn btn-outline-success btn-sm" })
+            </p>
+            <div class="ml-auto">
+                @using (Html.BeginForm())
+                {
+                    <div class="form-inline form-group">
+                        <input id="keyword" name="keyword" class="form-control" placeholder="Nhap tu khoa can tim" value="@ViewBag.Keyword" />
+                        <input id="page" name="page" value="1" hidden />
+                        <button type="submit" class="btn btn-primary ml-3">Tim Kiem</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="overflow-auto">
+        <table class="table table-sm table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Ten loai hang
+                    </th>
+                    <th>
+                        Ten Tieng Viet
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NameVN)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NameVN)
+                    </td>
+                    <td class="text-nowrap" width="1px">
+                        @Html.ActionLink("Chinh sua", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-outline-warning" })
+                        @Html.ActionLink("Chi tiet", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-outline-info" })
+                        @Html.ActionLink("Xoa", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-outline-danger" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <div>
+        @Html.PagedListPager(Model, Page => Url.Action("Index", new { page = Page, pageSize = ViewBag.PageSize, keyword = ViewBag.Keyword}))
+    </div>
+</div>
+
+@section css{
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 }
-
-</table>

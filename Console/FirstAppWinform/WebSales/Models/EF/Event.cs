@@ -12,23 +12,25 @@ namespace WebSales.Models.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderDetail
+    public partial class Event
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public OrderDetail()
+        public Event()
         {
-            this.Payments = new HashSet<Payment>();
+            this.TableDetails = new HashSet<TableDetail>();
+            this.TableDetails1 = new HashSet<TableDetail>();
         }
     
         public int ID { get; set; }
-        public Nullable<int> OrderID { get; set; }
-        public Nullable<int> ProductID { get; set; }
-        public Nullable<double> UnitPrice { get; set; }
-        public Nullable<int> Quantity { get; set; }
+        public string EventName { get; set; }
+        public string Contents { get; set; }
+        public Nullable<System.DateTime> FirstDateTime { get; set; }
+        public Nullable<System.DateTime> LastDateTime { get; set; }
+        public string Image { get; set; }
     
-        public virtual Order Order { get; set; }
-        public virtual Product Product { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Payment> Payments { get; set; }
+        public virtual ICollection<TableDetail> TableDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TableDetail> TableDetails1 { get; set; }
     }
 }

@@ -19,7 +19,34 @@
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Activated" Type="Boolean" />
+    <NavigationProperty Name="FeedBacks" Relationship="Self.FK_FeedBacks_Customers" FromRole="Customers" ToRole="FeedBacks" />
     <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Customers" FromRole="Customers" ToRole="Orders" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_Customers" FromRole="Customers" ToRole="Payments" />
+    <NavigationProperty Name="TableDetails" Relationship="Self.FK_TableDetails_Customers" FromRole="Customers" ToRole="TableDetails" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FirstDateTime" Type="DateTime" Precision="3" />
+    <Property Name="LastDateTime" Type="DateTime" Precision="3" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TableDetails" Relationship="Self.FK_TableDetails_Events" FromRole="Events" ToRole="TableDetails" />
+    <NavigationProperty Name="TableDetails1" Relationship="Self.FK_TableDetails_Events1" FromRole="Events" ToRole="TableDetails" />
+  </EntityType>
+  <EntityType Name="FeedBack">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FeedBack1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_FeedBacks_Customers" FromRole="FeedBacks" ToRole="Customers" />
   </EntityType>
   <EntityType Name="OrderDetail">
     <Key>
@@ -32,6 +59,7 @@
     <Property Name="Quantity" Type="Int32" />
     <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetails_Orders" FromRole="OrderDetails" ToRole="Orders" />
     <NavigationProperty Name="Product" Relationship="Self.FK_OrderDetails_Products" FromRole="OrderDetails" ToRole="Products" />
+    <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_OrderDetails" FromRole="OrderDetails" ToRole="Payments" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -46,6 +74,25 @@
     <NavigationProperty Name="Customer" Relationship="Self.FK_Orders_Customers" FromRole="Orders" ToRole="Customers" />
     <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Orders" FromRole="Orders" ToRole="OrderDetails" />
   </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="OrderDetailID" Type="Int32" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BankNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentBank" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Time" Type="Time" Precision="7" />
+    <Property Name="Payment1" Type="Double" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Payments_Customers" FromRole="Payments" ToRole="Customers" />
+    <NavigationProperty Name="OrderDetail" Relationship="Self.FK_Payments_OrderDetails" FromRole="Payments" ToRole="OrderDetails" />
+  </EntityType>
   <EntityType Name="Product">
     <Key>
       <PropertyRef Name="ID" />
@@ -55,7 +102,7 @@
     <Property Name="UnitPrice" Type="Double" />
     <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ProductDate" Type="DateTime" Precision="0" />
-    <Property Name="Available" Type="Int32" />
+    <Property Name="Available" Type="Boolean" />
     <Property Name="CategoryID" Type="Int32" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Category" Relationship="Self.FK_Products_Categories" FromRole="Products" ToRole="Categories" />
@@ -71,6 +118,36 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
+  <EntityType Name="TableDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TableID" Type="Int32" />
+    <Property Name="CustomerID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="EventID" Type="Int32" />
+    <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Time" Type="Time" Precision="7" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Messenger" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_TableDetails_Customers" FromRole="TableDetails" ToRole="Customers" />
+    <NavigationProperty Name="Event" Relationship="Self.FK_TableDetails_Events" FromRole="TableDetails" ToRole="Events" />
+    <NavigationProperty Name="Event1" Relationship="Self.FK_TableDetails_Events1" FromRole="TableDetails" ToRole="Events" />
+    <NavigationProperty Name="Table" Relationship="Self.FK_TableDetails_Tables" FromRole="TableDetails" ToRole="Tables" />
+  </EntityType>
+  <EntityType Name="Table">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TableDetails" Relationship="Self.FK_TableDetails_Tables" FromRole="Tables" ToRole="TableDetails" />
+  </EntityType>
   <Association Name="FK_Products_Categories">
     <End Role="Categories" Type="Self.Category" Multiplicity="0..1" />
     <End Role="Products" Type="Self.Product" Multiplicity="*" />
@@ -83,6 +160,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_FeedBacks_Customers">
+    <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="FeedBacks" Type="Self.FeedBack" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FeedBacks">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Orders_Customers">
     <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
     <End Role="Orders" Type="Self.Order" Multiplicity="*" />
@@ -92,6 +181,54 @@
       </Principal>
       <Dependent Role="Orders">
         <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payments_Customers">
+    <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Payments" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableDetails_Customers">
+    <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="TableDetails" Type="Self.TableDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TableDetails">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableDetails_Events">
+    <End Role="Events" Type="Self.Event" Multiplicity="0..1" />
+    <End Role="TableDetails" Type="Self.TableDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TableDetails">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableDetails_Events1">
+    <End Role="Events" Type="Self.Event" Multiplicity="0..1" />
+    <End Role="TableDetails" Type="Self.TableDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TableDetails">
+        <PropertyRef Name="EventID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -119,20 +256,69 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="T3H_K34_L1_DemoEntities" annotation:LazyLoadingEnabled="true">
+  <Association Name="FK_Payments_OrderDetails">
+    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="0..1" />
+    <End Role="Payments" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="OrderDetailID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableDetails_Tables">
+    <End Role="Tables" Type="Self.Table" Multiplicity="0..1" />
+    <End Role="TableDetails" Type="Self.TableDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tables">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TableDetails">
+        <PropertyRef Name="TableID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="T3H_K34_L1_DemoEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Categories" EntityType="Self.Category" />
     <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Events" EntityType="Self.Event" />
+    <EntitySet Name="FeedBacks" EntityType="Self.FeedBack" />
     <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
     <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="Payments" EntityType="Self.Payment" />
     <EntitySet Name="Products" EntityType="Self.Product" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TableDetails" EntityType="Self.TableDetail" />
+    <EntitySet Name="Tables" EntityType="Self.Table" />
     <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
       <End Role="Categories" EntitySet="Categories" />
       <End Role="Products" EntitySet="Products" />
     </AssociationSet>
+    <AssociationSet Name="FK_FeedBacks_Customers" Association="Self.FK_FeedBacks_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="FeedBacks" EntitySet="FeedBacks" />
+    </AssociationSet>
     <AssociationSet Name="FK_Orders_Customers" Association="Self.FK_Orders_Customers">
       <End Role="Customers" EntitySet="Customers" />
       <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payments_Customers" Association="Self.FK_Payments_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableDetails_Customers" Association="Self.FK_TableDetails_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="TableDetails" EntitySet="TableDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableDetails_Events" Association="Self.FK_TableDetails_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="TableDetails" EntitySet="TableDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableDetails_Events1" Association="Self.FK_TableDetails_Events1">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="TableDetails" EntitySet="TableDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_OrderDetails_Orders" Association="Self.FK_OrderDetails_Orders">
       <End Role="Orders" EntitySet="Orders" />
@@ -141,6 +327,14 @@
     <AssociationSet Name="FK_OrderDetails_Products" Association="Self.FK_OrderDetails_Products">
       <End Role="Products" EntitySet="Products" />
       <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payments_OrderDetails" Association="Self.FK_Payments_OrderDetails">
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableDetails_Tables" Association="Self.FK_TableDetails_Tables">
+      <End Role="Tables" EntitySet="Tables" />
+      <End Role="TableDetails" EntitySet="TableDetails" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

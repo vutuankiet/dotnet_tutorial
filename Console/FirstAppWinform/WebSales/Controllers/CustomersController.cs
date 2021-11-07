@@ -17,9 +17,17 @@ namespace WebSales.Controllers
         private CustomerDAO dao = new CustomerDAO();
 
         // GET: Customers
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int page = 1, int pageSize = 10, string keyword = "")
         {
-            return View(await dao.GetAll());
+            var model = await dao.GetByPaged(page, pageSize, keyword);
+
+            ViewBag.Keyword = keyword;
+            ViewBag.Page = page;
+            ViewBag.Pagesize = pageSize;
+
+            return View(model);
+
+            //return View(await dao.GetPagedList(page, pageSize, keyword));
         }
 
         // GET: Customers/Details/5
@@ -52,8 +60,10 @@ namespace WebSales.Controllers
         {
             if (ModelState.IsValid)
             {
-                await dao.Add(customer);
-                return RedirectToAction("Index");
+                if(await dao.Add(customer))
+                {
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(customer);
@@ -83,8 +93,10 @@ namespace WebSales.Controllers
         {
             if (ModelState.IsValid)
             {
-                await dao.Update(customer);
-                return RedirectToAction("Index");
+                if (await dao.Update(customer))
+                {
+                    return RedirectToAction("Index");
+                }
             }
             return View(customer);
         }
@@ -109,8 +121,14 @@ namespace WebSales.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(string id)
         {
-            await dao.Delete(id);
-            return RedirectToAction("Index");
+            if(await dao.Delete(id))
+            {
+                return RedirectToAction("Index");
+            }
+
+            Customer customer = await dao.GetSingleByID(id);
+
+            return View(customer);
         }
 
         protected override void Dispose(bool disposing)

@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using WebSales.Models.EF;
 using WebSales.Models.DAO;
+using PagedList;
+using PagedList.Mvc;
 
 namespace WebSales.Controllers
 {
@@ -17,9 +19,17 @@ namespace WebSales.Controllers
         private CategoryDAO dao = new CategoryDAO();
 
         // GET: Categories
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int page = 1, int pageSize = 10, string keyword = "")
         {
-            return View(await dao.GetAll());
+            var model = await dao.GetByPaged(page, pageSize, keyword);
+            
+            ViewBag.Keyword = keyword;
+            ViewBag.Page = page;
+            ViewBag.Pagesize = pageSize;
+
+            return View(model);
+
+            //return View(await dao.GetPagedList(page, pageSize, keyword));
         }
 
         // GET: Categories/Details/5

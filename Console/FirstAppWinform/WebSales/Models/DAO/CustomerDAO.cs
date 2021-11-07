@@ -28,7 +28,7 @@ namespace WebSales.Models.DAO
                 return false;
             }
 
-            return false;
+            return true;
         }
 
         public async Task<bool> Delete(string id)
@@ -50,7 +50,7 @@ namespace WebSales.Models.DAO
                 //retunr se tra ve task ko phai du lieu
             }
 
-            return false;
+            return true;
         }
 
         public async Task<List<Customer>> GetAll()
@@ -110,7 +110,7 @@ namespace WebSales.Models.DAO
                 return false;
             }
 
-            return false;
+            return true;
         }
     }
 }

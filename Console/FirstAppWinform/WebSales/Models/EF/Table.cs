@@ -12,23 +12,20 @@ namespace WebSales.Models.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderDetail
+    public partial class Table
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public OrderDetail()
+        public Table()
         {
-            this.Payments = new HashSet<Payment>();
+            this.TableDetails = new HashSet<TableDetail>();
         }
     
         public int ID { get; set; }
-        public Nullable<int> OrderID { get; set; }
-        public Nullable<int> ProductID { get; set; }
-        public Nullable<double> UnitPrice { get; set; }
-        public Nullable<int> Quantity { get; set; }
+        public string TableName { get; set; }
+        public string Status { get; set; }
+        public Nullable<System.DateTime> DateTime { get; set; }
     
-        public virtual Order Order { get; set; }
-        public virtual Product Product { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Payment> Payments { get; set; }
+        public virtual ICollection<TableDetail> TableDetails { get; set; }
     }
 }

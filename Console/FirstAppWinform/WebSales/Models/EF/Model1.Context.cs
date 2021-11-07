@@ -13,10 +13,10 @@ namespace WebSales.Models.EF
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class T3H_K34_L1_DemoEntities : DbContext
+    public partial class T3H_K34_L1_DemoEntities1 : DbContext
     {
-        public T3H_K34_L1_DemoEntities()
-            : base("name=T3H_K34_L1_DemoEntities")
+        public T3H_K34_L1_DemoEntities1()
+            : base("name=T3H_K34_L1_DemoEntities1")
         {
         }
     
@@ -27,9 +27,14 @@ namespace WebSales.Models.EF
     
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Event> Events { get; set; }
+        public virtual DbSet<FeedBack> FeedBacks { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<TableDetail> TableDetails { get; set; }
+        public virtual DbSet<Table> Tables { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace WebSales.Models.DAO
                 return false;
             }
 
-            return false;
+            return true;
         }
 
         public async Task<bool> Delete(int id)
@@ -48,7 +48,7 @@ namespace WebSales.Models.DAO
                 //retunr se tra ve task ko phai du lieu
             }
 
-            return false;
+            return true;
         }
 
         public async Task<bool> DeleteByOrderDeltaiID(int orderID)
@@ -131,7 +131,7 @@ namespace WebSales.Models.DAO
                 return false;
             }
 
-            return false;
+            return true;
         }
     }
 }

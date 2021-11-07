@@ -1,0 +1,6 @@
+﻿@using PagedList
+@using PagedList.Mvc
+
+@model IPagedList<object>
+
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { page = Page, pageSize = ViewBag.PageSize, keyword = ViewBag.Keyword }))

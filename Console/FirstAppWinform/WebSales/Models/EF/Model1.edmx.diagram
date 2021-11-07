@@ -4,17 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cc75db9480b64bf19f7d5436dcb0c39e" Name="Diagram1">
-        <EntityTypeShape EntityType="T3H_K34_L1_DemoModel.Category" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="T3H_K34_L1_DemoModel.Customer" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="T3H_K34_L1_DemoModel.OrderDetail" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="T3H_K34_L1_DemoModel.Order" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="T3H_K34_L1_DemoModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="T3H_K34_L1_DemoModel.sysdiagram" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+      <Diagram DiagramId="4ea9ddfd9dfd4e1ea56a0622f8b82d6b" Name="Diagram1">
+        <EntityTypeShape EntityType="T3H_K34_L1_DemoModel.Category" Width="1.5" PointX="0.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="T3H_K34_L1_DemoModel.Customer" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="T3H_K34_L1_DemoModel.Event" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="T3H_K34_L1_DemoModel.FeedBack" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="T3H_K34_L1_DemoModel.OrderDetail" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="T3H_K34_L1_DemoModel.Order" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="T3H_K34_L1_DemoModel.Payment" Width="1.5" PointX="7.5" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="T3H_K34_L1_DemoModel.Product" Width="1.5" PointX="3" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="T3H_K34_L1_DemoModel.sysdiagram" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="T3H_K34_L1_DemoModel.TableDetail" Width="1.5" PointX="6" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="T3H_K34_L1_DemoModel.Table" Width="1.5" PointX="3.75" PointY="12" IsExpanded="true" />
         <AssociationConnector Association="T3H_K34_L1_DemoModel.FK_Products_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="T3H_K34_L1_DemoModel.FK_FeedBacks_Customers" ManuallyRouted="false" />
         <AssociationConnector Association="T3H_K34_L1_DemoModel.FK_Orders_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="T3H_K34_L1_DemoModel.FK_Payments_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="T3H_K34_L1_DemoModel.FK_TableDetails_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="T3H_K34_L1_DemoModel.FK_TableDetails_Events" ManuallyRouted="false" />
+        <AssociationConnector Association="T3H_K34_L1_DemoModel.FK_TableDetails_Events1" ManuallyRouted="false" />
         <AssociationConnector Association="T3H_K34_L1_DemoModel.FK_OrderDetails_Orders" ManuallyRouted="false" />
         <AssociationConnector Association="T3H_K34_L1_DemoModel.FK_OrderDetails_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="T3H_K34_L1_DemoModel.FK_Payments_OrderDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="T3H_K34_L1_DemoModel.FK_TableDetails_Tables" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
